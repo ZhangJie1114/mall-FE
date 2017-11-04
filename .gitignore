@@ -9,8 +9,8 @@
 # nodeJS modules
 node_modules/
 
-# webpack disk
-disk/
+# webpack dist
+dist/
 
 # temp file
 *.log

@@ -2,7 +2,7 @@
 * @Author: ZhangJie
 * @Date:   2017-10-30 11:34:27
 * @Last Modified by:   ZhangJie
-* @Last Modified time: 2017-11-02 02:08:43
+* @Last Modified time: 2017-11-04 11:12:10
 */
 
 /*独立通用模块*/
@@ -19,8 +19,10 @@ var cssPlugin = new ExtractTextPlugin("css/[name].css");
 /*自动生成html模板*/
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 // 获取html-webpack-plugind参数的方法
-var getHtmlConfig = function(name){
+var getHtmlConfig = function(name, title){
     return{
+        // 定义html中title标签的属性
+        title : title,
         // 引用的模板路径，template的路径前缀不要.号！不要.号！不要.号！
         template : 'src/view/'+ name +'.html', 
         // 生成出来的文件和路径，前面会加上output的path
@@ -71,14 +73,16 @@ var config = {
     plugins: [
         commonsPlugin,
         cssPlugin,
-        new HtmlWebpackPlugin(getHtmlConfig('index')),
-        new HtmlWebpackPlugin(getHtmlConfig('login'))
+        new HtmlWebpackPlugin(getHtmlConfig('index', '首页')),
+        new HtmlWebpackPlugin(getHtmlConfig('login', '用户登录')),
+        new HtmlWebpackPlugin(getHtmlConfig('result', '操作结果'))
     ],
     // 页面入口文件配置
     entry: {
         'common' : './src/page/common/index.js',
         'index' : './src/page/index/index.js',
-        'login' : './src/page/login/index.js'
+        'login' : './src/page/login/index.js',
+        'result' : './src/page/result/index.js'
     },
     // 入口文件输出配置
     output: {
@@ -103,8 +107,9 @@ var config = {
             // ExtractTextPlugin单独打包css的loader
             { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader","css-loader") },
             // 图片文件使用 url-loader 来处理，小于8kb的直接转为base64
-            { test: /\.(png|jpg|gif|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=8192&name=resource/[name].[ext]'}
-            
+            { test: /\.(png|jpg|gif|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=8192&name=resource/[name].[ext]'},
+            // 加载.string模板文件
+            { test: /\.string$/, loader: 'html-loader'}
 
             //默认css的loader
             // .scss 文件使用 style-loader、css-loader 和 sass-loader 来编译处理
@@ -116,18 +121,20 @@ var config = {
             // 图片文件使用 url-loader 来处理，小于8kb的直接转为base64
             // { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'}
         ]
-    }
-    
+    },    
     // 其它解决方案配置
-    // resolve: {
-    //     root: 'D:/HtmlWorkSpace/webpack/src', //绝对路径
-    //     extensions: ['', '.js', '.json', '.scss'],
-    //     alias: {
-    //         AppStore : 'js/stores/AppStores.js',
-    //         ActionType : 'js/actions/ActionType.js',
-    //         AppAction : 'js/actions/AppAction.js'
-    //     }
-    // }
+    resolve: {
+        // root: 'D:/HtmlWorkSpace/webpack/src', //绝对路径
+        // extensions: ['', '.js', '.json', '.scss'],
+        // 路径别名
+        alias: {
+            node_modules : __dirname + '/node_modules',
+            util : __dirname + '/src/util',
+            page : __dirname + '/src/page',
+            service : __dirname + '/src/service',
+            image : __dirname + '/src/image'
+        }
+    }
 };
 
 // 给主配置的common追加参数

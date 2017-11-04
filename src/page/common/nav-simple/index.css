@@ -1,0 +1,20 @@
+/*
+* @Author: ZhangJie
+* @Date:   2017-11-02 13:51:44
+* @Last Modified by:   ZhangJie
+* @Last Modified time: 2017-11-03 09:35:41
+*/
+@charset "UTF-8";
+
+.nav-simple{
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+}
+.nav-simple .logo{
+    font-size: 26px;
+    font-weight: bold;
+    color: #c60023;
+    text-decoration: none;
+}

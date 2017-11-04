@@ -1,0 +1,25 @@
+/*
+* @Author: ZhangJie
+* @Date:   2017-11-02 13:39:06
+* @Last Modified by:   ZhangJie
+* @Last Modified time: 2017-11-02 13:40:05
+*/
+@charset "UTF-8";
+
+.footer{
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+.footer .links{
+    text-align: center;
+    color: #666;
+    line-height: 30px;
+}
+.footer .links .link{
+    padding: 0 10px;
+}
+.footer .copyright{
+    text-align: center;
+    color: #666;
+    line-height: 30px;
+}

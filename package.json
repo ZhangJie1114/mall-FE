@@ -4,6 +4,8 @@
   "description": "webpack练习",
   "main": "webpack.config.js",
   "dependencies": {
+    "font-awesome": "^4.7.0",
+    "hogan": "^1.0.2",
     "webpack": "^1.15.0"
   },
   "devDependencies": {
@@ -19,7 +21,7 @@
   },
   "scripts": {
     "dev": "set WEBPACK_ENV=dev && webpack-dev-server --inline --port 8088",
-    "disk": "set WEBPACK_ENV=dev && webpack -p"
+    "dist": "set WEBPACK_ENV=dev && webpack -p"
   },
   "author": "张杰",
   "license": "ISC"
